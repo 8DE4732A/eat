@@ -1,4 +1,4 @@
-if ($request.url.indexOf('eat.zuifuli.com/ctwrapper?id=1030005&type=0') != -1) {
+if ($request.url.indexOf('eat.zuifuli.com/ctwrapper') != -1) {
     if($response.status == 200){
         $notification.post("最福利已fake", "", "");
         $done({
