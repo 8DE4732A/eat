@@ -12,3 +12,4 @@ if($request.url.indexOf('eat.zuifuli.com/ctwrapper') != -1) {
     headers['If-None-Match'] = null
 }
 $done({headers})
+console.log('request', headers);
