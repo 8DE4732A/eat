@@ -11,3 +11,4 @@ if(headers['ifuli-location'] != undefined && headers['ifuli-location'] != null) 
 if($request.url.indexOf('eat.zuifuli.com/ctwrapper') != -1) {
     headers['If-None-Match'] = null
 }
+$done({headers})
