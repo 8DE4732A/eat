@@ -11,7 +11,7 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             iHealthBridge.doAction('locate',{},function(ret,suc) { 
                 var p = document.querySelector('p');
-                p.value = JSON.stringify(ret);
+                p.text = JSON.stringify(ret);
             })
         });
     </script>
