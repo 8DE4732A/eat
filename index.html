@@ -11,7 +11,12 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             iHealthBridge.doAction('locate',{},function(ret,suc) { 
                 var p = document.querySelector('p');
-                p.text = JSON.stringify(ret);
+                if(suc) {
+                    p.value = JSON.stringify(ret);
+                } else {
+                    p.value = "failed";
+                }
+                
             })
         });
     </script>
