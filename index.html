@@ -1,27 +1,26 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>test</title>
-    <script src='//cdn.jsdelivr.net/npm/eruda'></script>
-    <script>eruda.init();</script>
-</head>
-
-<body>
-    <p></p>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            iHealthBridge.doAction('locate',{},function(ret,suc) { 
-                var p = document.querySelector('p');
-                if(suc) {
-                    p.value = JSON.stringify(ret);
-                } else {
-                    p.value = "failed";
+<script>
+    window.iHealthBridge._doAction = window.iHealthBridge.doAction;
+    window.iHealthBridge.doAction = function(f, p, c) {
+        if (f === 'locate') {
+            c({"adcode": "310100", "city": "上海市", "address": "涛哥你好", "date": 1676696166.1296182, "lat": 0.0, "lng": 0.0, "poi": "涛哥你好"}, true)
+        }
+    }
+    navigator.geolocation._getCurrentPosition = navigator.geolocation.getCurrentPosition;
+    navigator.geolocation.getCurrentPosition = function(f) {
+        navigator.geolocation._getCurrentPosition(p => {
+            Object.defineProperty(p.coords, 'longitude', {
+                get: function() {
+                    return 121.48789;
                 }
-                
-            })
+            });
+            Object.defineProperty(p.coords, 'latitude', {
+                get: function() {
+                    return 31.24309;
+                }
+            });
+            console.info("fake", p);
+            f(p);
         });
-    </script>
-</body>
-
-</html>
+    }
+    //window.iHealthBridge.doAction('locate', {}, function (ret, suc) { alert(JSON.stringify(ret)); });
+</script>
